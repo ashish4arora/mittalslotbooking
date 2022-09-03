@@ -34,7 +34,7 @@ def updateSlots(request):
     #     slots += [str(e) for e in i.slot.all()]
     # slots.sort()
     context = {'addslotform':addslotform, 'makecalendarform':makeCalendarform ,'allslots':allslots, 'calendar':calendar}
-    return render(request, 'slots/updateSlots.html', context)
+    return render(request, 'slots/updateslots.html', context)
 
 def removeSlots(request, pk):
     if request.user.isAdmin == False:
