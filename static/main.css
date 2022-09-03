@@ -260,8 +260,9 @@ ul{
 }
 
 .courtmenu{
-    width: 80vw;
-    display: flex;
+    width: 70vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
 }
 
 .courtcard{
@@ -273,7 +274,7 @@ ul{
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1vh;
+    margin-bottom: 2vh;
     margin-right: 1vw;
 }
 
