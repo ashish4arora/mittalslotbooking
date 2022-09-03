@@ -40,10 +40,10 @@ def register(request):
         if form.is_valid():
             formresponse = form.save(commit=False)
             formresponse.username = formresponse.username.lower()
-            username = formresponse.username
+            username = formresponse.username.lower()
             password = formresponse.password
             formresponse.save()
-            user = authenticate(request, entrynumber = username, password = password)
+            user = authenticate(request, username = username, password = password)
             login(request, user)
             return redirect('home')
         else:
