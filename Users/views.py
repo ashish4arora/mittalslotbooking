@@ -45,7 +45,7 @@ def register(request):
             formresponse.save()
             # user = authenticate(request, username = username, password = password)
             # login(request, user)
-            return loginuser(request)
+            return redirect('login')
         else:
             messages.error(request, "An error occured")
     context = {'page':page, 'form':form}
