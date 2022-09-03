@@ -68,9 +68,9 @@ hr{
 }
 
 .slotgrid{
-    width: 80vw;
+    width: 70vw;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .slotfield{
@@ -262,7 +262,7 @@ ul{
 .courtmenu{
     width: 70vw;
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .courtcard{
