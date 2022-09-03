@@ -1,0 +1,361 @@
+.navbar{
+    display: flex;
+    height: 15vh;
+    justify-content: space-between;
+}
+.navbar *{
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    background: rgb(23,23,23);
+    color: #EDEDED;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+button{
+    cursor: pointer;
+}
+
+.navbar i{
+    margin-right:8px;
+}
+
+hr{
+    color: #00ADB5;
+}
+
+.login{
+    padding: 5vh 2vw;
+    background-color: #444444;
+    width: 25vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    /* margin-top: 5vh; */
+}
+
+.field{
+    margin: 2vh auto;
+}
+
+.field label{
+    font-size: 1.1rem;
+    margin-right: 0.5vw;
+    width: 6vw;
+    display: inline-block;
+    text-align: left;
+}
+.field input, .field select{
+    width: 12vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border: none;
+    height: 4vh;
+    border-radius: 5px;
+}
+
+.slotgrid{
+    width: 80vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+}
+
+.slotfield{
+    margin: 2vh auto;
+}
+
+.invfield{
+    margin: 2vh auto;
+}
+
+.invfield label{
+    width: 5vw;
+    display: inline-block;
+    text-align: left;
+    margin-right: 0.5vw;
+}
+
+.invfield input{
+    border: none;   
+    padding: 0.5vh 0.5vw;
+    border-radius: 3px;
+}
+
+.slotfield label{
+    font-size: 1.1rem;
+    display: inline-block;
+    text-align: left;
+    width: 5vw;
+}
+
+.calendarfield{
+    margin: 2vh auto;
+}
+
+.calendarfield label{
+    font-size: 1.1rem;
+    display: inline-block;
+    text-align: left;
+    width: 8vw;
+    margin-right: 0;
+}
+
+.slotfield input{
+    width: 5vw;
+    padding: 1vh 1vw;
+    border:none;
+    height: 2vh;
+    border-radius: 2px;
+}
+
+.slotitem{
+    display: flex;
+    justify-content: space-between;
+    width: 10vw;
+    height: auto;
+    padding: 1vh 1.5vw;
+    background-color: #DA0037;
+    border-radius: 10px;
+    align-items: center;
+    margin: 1vh 0.5vw;
+}
+
+ul{
+    text-align: left;
+}
+
+.register{
+    width: 35vw !important;
+}
+
+.allcenter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login input{
+    border: none;
+    border-radius: 5px;
+    margin: 1vh auto;
+    padding: 1vh 1vw;
+}
+
+.login label{
+    display: inline-block;
+    width: 6vw;
+    text-align: right;
+}
+
+.navbar div{
+    vertical-align: middle;
+    margin: auto 5vw;
+    padding: 5px 0;
+    display: inline-flex;
+}
+
+.navbar div div{
+    margin: auto 15px;
+}
+
+.mainpage{
+    display: inline-flex;
+}
+
+.container{
+    max-width: 90vw;
+    margin: auto 5vw;
+    margin-top: 2vh;
+}
+
+
+
+.mainpage img{
+    width: 35vw;
+    margin-left: 5vw;
+}
+
+
+.mainpage h1{
+    margin: 2.3vh auto;
+}
+
+.subsubheading{
+    font-size: 2rem;
+    color: #DA0037;
+}
+
+.subheading{
+    font-size: 3rem;
+    color: #DA0037;
+}
+
+.heading{
+    font-size: 7rem;
+    color: #DA0037;
+}
+
+.item{
+    background-color: #DA0037;
+    color: #EDEDED;
+    width: 40vw;
+    min-height: 50px;
+    height: 7vh;
+    box-shadow: 1px 0px 5px black;
+    padding-left:2vw;
+    padding-right: 2vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5vh;
+    transition: ease;
+}
+
+.item:hover{
+    transition: ease;
+    border-radius: 1px;
+    box-shadow: 0px 3px 2px 2px black;
+}
+
+
+.item i{
+    margin-left: 1vw;
+}
+
+.item h2{
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: auto 0;
+}
+
+.stafffield{
+    margin: 2vh auto;    
+}
+
+.stafffield *{
+    margin: auto 0.2vw;
+}
+
+.stafffield label{
+    font-size: 1.1rem;
+}
+
+.stafffield input[type="text"]{
+    padding: 0.7vh 0.5vw;
+    border: none;
+    border-radius: 3px;
+}
+
+.courtmenu{
+    width: 80vw;
+    display: flex;
+}
+
+.courtcard{
+    width: 12vw;
+    height: auto;
+    background-color: #DA0037;
+    border-radius: 10px;
+    padding: 1.5vh 1vw;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vh;
+    margin-right: 1vw;
+}
+
+
+.courtcard i{
+    margin-left: 4px;
+}
+
+.courtcard h2{
+    font-size: 1.2rem;
+    margin: 2vh 0;
+    margin-bottom: 0;
+}
+
+.courtcard p{
+    margin-top: 2px;
+    font-size: 0.8rem;
+}
+
+.courtcard img{
+    width: 100%;
+}
+
+
+.navbar div div:hover{
+    border-bottom: #DA0037 solid 3px;
+    transition: ease;
+}
+
+.submit{
+    background-color: #DA0037;
+    color: #EDEDED;
+    font-weight: 600;
+    width: 7vw;
+    height: 5vh;
+    box-shadow: none;
+    transition: ease 0.5s;
+    margin: 1vh auto;
+}
+
+.submit:hover{
+    border-radius: 8px;
+    transition: ease 0.5s;
+    cursor: pointer;
+}
+
+.messages{
+    width: 60vw;
+    margin: auto 5vw;
+}
+
+.courtfield label{
+    width: 12vw !important;
+}
+
+
+
+table, th , td{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 10px 15px;
+}
+
+.hidden{
+    display: none;
+}
+
+.title{
+    margin-top: 6vh;
+    width: 50vw;
+}
+
+.slotbook{
+    width: 10vw;
+    height: 3vw;
+    background-color: #DA0037;
+    color: #EDEDED;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 3vh 0.5vw;
+}
