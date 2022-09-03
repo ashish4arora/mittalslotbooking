@@ -1,0 +1,117 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load custom_tags %}
+
+<div class="container">
+<h1 class="subheading">Your Booked Slots</h1>
+{% if bookedslots %}
+<table>
+    <tr>
+        <th>Slot</th>
+        <th>Court</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    {% for eachslot in bookedslots %}
+    <tr>
+        <td>{{eachslot.slot}}</td>
+        <td>{{eachslot.court}}</td>
+        {% if eachslot.isConfirmed %}
+        <td>Confirmed</td>
+        {% else %}
+        <td>Waitlist: {{eachslot.waitlist}}</td>
+        {% endif %}
+        <td><a href="booking/{{eachslot.id}}"><i class="fa-solid fa-xmark" style="color:red"></i></a></td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p style="color:#EDEDED; font-size: 1.5rem">You dont have any slots books yet!</p>
+    {% endif %}
+</table>
+
+<h2 class="subheading">Book your slot!</h2>
+{% if state != "sportfield" %}
+<button onclick = "window.location.href = 'bookings'" class="submit">Reset</button>
+{% endif %}
+<form action="" method = "POST">
+    {% csrf_token %}
+    <input type="hidden" name="state" value = "sportfield">
+    <div class="field">
+        <label>Select Sport</label>
+    {% if state == "sportfield" %}
+        <!-- <input type="text" list="sport" name = "sport" placeholder = "Sport" id = "sportinput" required> -->
+        <select id = "sport" name = "sport" required>
+            {% for sport in allsports %}
+            <option value="{{sport}}">{{sport}}</option>
+            {% endfor %}
+        </select>
+        </div>
+    <input type="submit" value="Next" class="submit">
+    {% else %}
+        <!-- <input type="text" list="sport" name = "sport" placeholder = "Sport" id = "sportinput" value = "{{sportvalue}}" disabled required> -->
+        <select id = "sport" name = "sport" style="width: 10vw;" required disabled>
+            <option value="{{sportvalue}}">{{sportvalue}}</option>
+        </select>
+        </div>
+    {% endif %}
+</form>
+
+{% if state != "sportfield" %}
+<form action="" method = "POST">
+        {% csrf_token %}
+        <input type="hidden" name = "state" value = "courtfield">
+        <input type="hidden" name = "sport" value="{{sportvalue}}">
+        <div class="field">
+        <label>Select Court</label>
+        {% if state == "courtfield" %}
+        <!-- <input type="text" list = "court" name = "court" placeholder = "Court" id = "courtinput" required> -->
+        <select id = "court" name = "court" required>
+            {% for court in allcourts %}
+            <option value="{{court}}">{{court}}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <input type="submit" value = "Find Slots" class="submit">
+        {% else %}
+        <!-- <input type="text" list = "court" name = "court" placeholder = "Court" id = "courtinput" vlaue = "{{courtvalue}}" disabled required> -->
+        <select id = "court" name = "court" required disabled>
+            <option value="{{courtvalue}}">{{courtvalue}}</option>
+        </select>
+        </div>
+        {% endif %}
+</form>
+{% endif %}
+{% if state == "slotfield" %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name = "state" value = "slotfield">
+    <input type="hidden" name = "sport" value="{{sportvalue}}">
+    <input type="hidden" name = "court" value = "{{courtvalue}}">
+    <div id = "slotinfo">
+        <h3>Showing slots for {{day}}, {{date}} </h3>
+        <table>
+            <tr>
+                <th>Slot</th>
+                <th>Availability</th>
+                <th>Select</th>
+            </tr>
+            {% for eachslot in allslots %}
+            <tr>
+                <td>{{eachslot}}</td>
+                {% waitlist eachslot courtvalue as slotwaitlist %}
+                {% if slotwaitlist == 0 %}
+                <td>Available</td>
+                {% else %}
+                <td>Waitlist: {{slotwaitlist}}</td>
+                {% endif %}
+                <td><input type="radio" name = "slot" value = "{{eachslot.id}}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <input type="submit" value = "Reserve Slot" class="submit">
+</form>
+</div>
+{% endif %}
+{% endblock %}

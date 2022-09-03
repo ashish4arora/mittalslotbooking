@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<div class = "container mainpage">
+    <div class = "title">
+        <h1 class = "heading">Mittal Sports</h1>
+        <!-- <h1 class = "heading">Sports</h1> -->
+        <h1 class="heading">Complex</h1>
+        {% if request.user.is_authenticated %}
+        <button class = "slotbook" onclick="window.location.href = '../bookings'">Book a Slot</button>
+        {% else %}
+        <button class = "slotbook" onclick="window.location.href = '../login'">Book a Slot</button>
+        {% endif %}
+    </div>
+    <div>
+        <img src="{% static 'badminton-bro.svg' %}" alt="">
+    </div>
+</div>
+{% endblock %}

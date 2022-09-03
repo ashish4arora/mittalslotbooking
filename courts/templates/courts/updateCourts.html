@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+<h2 class="subheading">Courts</h2>
+<div class = "courtmenu">
+    {% if request.user.status == "staff" or request.user.isAdmin %}
+    {% for court in allcourts %}
+    <div class = "courtcard">
+        <div>
+            <h2>{{court}}</h2>
+            <p>{{court.sport}}</p>
+        </div>
+        <div>
+            <a href="courts/{{court.id}}"><i class="fa-solid fa-trash"></i></a>
+            <a href="viewcourt/{{court.id}}"><i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for court in allcourts %}
+    <div class = "courtcard">
+        <div>
+            <h2>{{court}}</h2>
+            <p>{{court.sport}}</p>
+        </div>
+        <div>
+            <a href="viewcourt/{{court.id}}"><i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% if request.user.status == "staff" or request.user.isAdmin%}
+<h1 class="subheading">Add Court</h1>
+<form action="" method = "POST">
+    {% csrf_token %}
+    <div class="field courtfield">
+        <label>Court Name</label>
+        {{addcourtform.courtname}}
+    </div>
+    <div class="field courtfield">
+    <label>Court Location</label>
+    {{addcourtform.courtlocation}}
+    </div>
+    <div class="field courtfield">
+    <label>Sport</label>
+    <input type="text" list = "sport" name = "sport" required>
+    <datalist id = "sport">
+        {% for sport in allsports %}
+            <option value = "{{sport}}"></option>
+        {% endfor %}
+    </datalist>
+    </div>
+    <div class="field courtfield">
+    <label>Membership Required</label>
+    {{addcourtform.membership_req}}
+    </div>
+    <input type="submit" value="Add Court" class="submit">
+</form>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load custom_tags %}
+<div class="container">
+    <h1 class="subheading">{{court.sport}} - {{court}}</h1>
+    <h1 class="subsubheading">Inventory</h1>
+    {% if not inventory %}
+    <h1 style="font-size: 1.5rem;">No Inventory</h1>
+    {% else %}
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Count</th>
+        </tr>
+        {% for item in inventory %}
+        <tr>
+            <td>{{item.item}}</td>
+            <td>{{item.count}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <h1 class="subsubheading">Slots</h1>
+    {% if not slots %}
+    <h1 style="font-size: 1.5rem;">No slots available</h1>
+    {% else %}
+    <table>
+        <tr>
+            <th>Days</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Availability</th>
+        </tr>
+        {% for eachslot in slots %}
+        {% for theslot in eachslot.slot.all %}
+        <tr>
+            <td>
+                {% for theday in eachslot.day.all %}
+                {{theday}},
+                {% endfor %}
+            </td>
+            <td>{{theslot.start_time}}</td>
+            <td>{{theslot.end_time}}</td>
+            {% waitlistcourt theslot eachslot.court as availability %}
+            {% if availability == 0 %}
+                <td>Available</td>
+            {% else %}
+                <td>Waitlist: {{availability}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+    {% endif %}
+    
+    <button class="submit" onclick="window.location.href = '../bookings'">Book Slot</button>
+</div>
+{% endblock %}

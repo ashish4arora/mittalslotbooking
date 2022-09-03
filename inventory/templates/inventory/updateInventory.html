@@ -1,0 +1,87 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+<h1 class="subheading">Items</h1>
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Sport</th>
+        <th></th>
+    </tr>
+    {% for item in allitems %}
+    <tr>
+        <td>{{item}}</td>
+        <td>{{item.sport}}</td>
+        <td><a href="item/{{item.id}}"><i class="fa-solid fa-xmark" style="color:red"></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<h1 class="subheading">Add Item</h1>
+<form action="" method = "POST">
+    {% csrf_token %}
+    <input type="hidden" name = "type" value = "additem">
+    <div class="invfield">
+    <label>Item Name</label>
+    {{additemform.itemname}}
+    </div>
+    <div class="invfield">
+    <label>Sport</label>
+    <input type="text" list = "sport" name = "sport" required>
+    </div>
+    <datalist id = "sport">
+        {% for sport in allsports %}
+            <option value = "{{sport}}"></option>
+        {% endfor %}
+    </datalist>
+    <input type="submit" value="Add Item" class="submit">
+</form>
+<h1 class="subheading">Inventory</h1>
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Sport</th>
+        <th>Court</th>
+        <th>Count</th>
+        <th></th>
+    </tr>
+    {% for inventory in allinventory %}
+    <tr>
+        <td>{{inventory.item}}</td>
+        <td>{{inventory.item.sport}}</td>
+        <td>{{inventory.court}}</td>
+        <td>{{inventory.count}}</td>
+        <td><a href="inventory/{{inventory.id}}"><i class="fa-solid fa-xmark" style="color:red"></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+<h1 class="subheading">Add Inventory</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name = "type" value = "addInventory">
+    <div class="invfield">
+    <label>Item</label>
+    <input type="text" list = "item" name = "item" required>
+    </div>
+    <datalist id = "item">
+        {% for item in allitems %}
+            <option value = "{{item}}"></option>
+        {% endfor %}
+    </datalist>
+    <div class="invfield">
+    <label>Court</label>
+    <input type="text" list = "court" name = "court" required>
+    </div>
+    <datalist id = "court">
+        {% for court in allcourts %}
+            <option value = "{{court}}"></option>
+        {% endfor %}
+    </datalist>
+    <div class="invfield">
+    <label>Item Count</label>
+    {{addinventoryform.count}}
+    </div>
+    <input type="submit" value="Add Inventory" class="submit">
+</form>
+</div>
+{% endblock %}

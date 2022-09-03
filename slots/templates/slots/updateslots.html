@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class = "container">
+<h1 class = "subheading">Slots</h1>
+<div class="slotgrid">
+    {% for slot in allslots %}
+    <div class="slotitem">
+        <p>{{slot.start_time}}</p>
+        <p>|</p>
+        <p>{{slot.end_time}}</p>
+        <a href="slots/{{slot.id}}"><i class="fa-solid fa-xmark" style="color: #EDEDED; margin-left: 1vw;"></i></a>
+    </div>
+    {% endfor %}
+</div>
+
+<form action="" method = "POST">
+    <input type="hidden" value = "slotform" name = "state" value = "slotform">
+    {% csrf_token %}
+    <div class="slotfield">
+        <label>Start Time</label>
+        {{addslotform.start_time}}
+    </div>
+    <div class="slotfield">
+        <label>End Time</label>
+        {{addslotform.end_time}}
+    </div>
+    <input type="submit" value="Add Slot" class="submit">
+</form>
+
+<h1 class="subheading">Assign Slots</h1>
+<table>
+    <tr>
+        <th>Court</th>
+        <th>Day(s)</th>
+        <th>Slot(s)</th>
+        <th></th>
+    </tr>
+    {% for theday in calendar %}
+    <tr>
+        <td>{{theday.court}}</td>
+        <td>
+            {% for each in theday.day.all %}
+            {{each}},
+            {% endfor %}
+        </td>
+        <td>
+            {% for each in theday.slot.all %}
+            {{each}},
+            {% endfor %}
+        </td>
+        <td><a href="calendar/{{theday.id}}"><i class="fa-solid fa-xmark" style="color:red"></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+<p>
+    {% for each in slots %}
+    {{each}}
+    {% endfor %}
+</p>
+<form action="" method = "POST">
+    <input type="hidden" value="calendarform" name = "state" value = "calendarform">
+    {% csrf_token %}
+    <div class="field calendarfield">
+        <label>Select Court(s)</label>
+        {{makecalendarform.court}}
+    </div>
+    <div class="calendarfield">
+        <label>Select Day(s)</label>
+        {{makecalendarform.day}}
+    </div>
+    <div class="calendarfield">
+        <label>Select Slot(s)</label>
+        {{makecalendarform.slot}}
+    </div>
+    <input type="submit" value="Assign Slot" class="submit">
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class = "container">
+<h1 class="subheading">Sports</h1>
+
+{% if request.user.status == "staff" or request.user.isAdmin %}
+    {% for sport in allsports %}
+    <div class = "item">
+        <div><h2>{{sport.name}}</h2></div>
+        <div><a href="../delsport/{{sport.sportcode}}"><i class="fa-solid fa-trash"></i></a> <a href="../viewsport/{{sport.sportcode}}"><i class="fa-solid fa-chevron-right"></i></a></div>
+    </div>
+    {% endfor %}
+{% endif %}
+
+{% if request.user.status == "student" and request.user.isAdmin == False %}
+{% for sport in allsports %}
+<div class = "item">
+    <div><h2>{{sport.name}}</h2></div>
+    <div><a href="../viewsport/{{sport.sportcode}}"><i class="fa-solid fa-chevron-right"></i></a></div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if request.user.isAdmin or request.user.status == "staff" %}
+<h1 class="subheading">Add Sport</h1>
+
+<form action="" method = "POST">
+    {% csrf_token %}
+    <div class = "field">
+        <label>Sport Code</label>
+        {{addsportform.sportcode}}
+    </div>
+    <div class="field">
+        <label>Sport Name</label>
+        {{addsportform.name}}
+    </div>
+    <input type="submit" value="Add Sport" class = "submit">
+</form>
+{% endif %}
+</div>
+{% endblock %}

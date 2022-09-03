@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="subheading">{{sport}}</h1>
+    <h1 class="subsubheading">Courts</h1>
+    {% if not courts %}
+    <p style="font-size: 1.5rem;">No courts availabel</p>
+    {% endif %}
+    <div class = "courtmenu">
+        {% if request.user.status == "staff" or request.user.isAdmin %}
+        {% for court in courts %}
+        <div class = "courtcard">
+            <div>
+                <h2>{{court}}</h2>
+                <p>{{court.sport}}</p>
+            </div>
+            <div>
+                <a href="../courts/{{court.id}}"><i class="fa-solid fa-trash"></i></a>
+                <a href="../viewcourt/{{court.id}}"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% for court in courts %}
+        <div class = "courtcard">
+            <div>
+                <h2>{{court}}</h2>
+                <p>{{court.sport}}</p>
+            </div>
+            <div>
+                <a href="../viewcourt/{{court.id}}"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container allcenter">
+{% if page == "login" %}
+<form action="" method = "POST">
+    {% csrf_token %}
+    <center><h1 class="subheading">Login</h1></center>
+    <div class="login">
+    <div>
+        <label>EntryNumber</label>
+        <input type="text" name = "username" placeholder="ex. cs1210001" >
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" name ="password" placeholder="Password">
+    </div>
+    <input type="submit" value="Login" class="submit">
+    <p style="color:#DA0037">Dont have an account? <a href="{% url 'register' %}" style="text-decoration: underline;">Register Instead</a></p>
+    </div>
+</form>
+{% endif %}
+
+{% if page == "register" %}
+<center><h1 class="subheading">Register</h1></center>
+<form action="" method="POST">
+    <div class="login register">
+    {% csrf_token %}
+    <div>
+        <label>First Name</label>
+        {{form.first_name}}
+    </div>
+    <div>
+        <label>Last Name</label>
+        {{form.last_name}}
+    </div>
+    <div>
+        <label>Username</label>
+        {{form.username}}
+    </div>
+    <div>
+        <label>Password</label>
+        {{form.password1}}
+    </div>
+    <div>
+        <label>Confirm Password</label>
+        {{form.password2}}
+    </div>
+    <ul>
+        <li>Your password can’t be too similar to your other personal information</li>
+        <li>Your password must contain at least 8 characters</li>
+        <li>Your password can’t be a commonly used password</li>
+        <li>Your password can’t be entirely numeric</li>
+    </ul>
+    <input type="submit" value="Register" class="submit">
+    <p style="color:#DA0037">Already have an account? <a href="{% url 'login' %}" style="text-decoration: underline;">Login Instead</a></p>
+    </div>
+</form>
+</div>
+{% endif %}
+{% endblock %}

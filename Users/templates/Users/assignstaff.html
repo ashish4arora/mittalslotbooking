@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+<h1 class="subheading">Assign Staff Role</h1>
+<form action="" method = "POST">
+    {% csrf_token %}
+    <div class="stafffield" style="display: inline-block;">
+    <label>Enter the username</label>
+    <input type="text" name = "username">
+    <input type="submit" value = "Assign Staff" class="submit">
+    </div>
+</form>
+{% if success %}
+<p style="color: green">The user was successfully given the Staff status</p>
+{% endif %}
+<h1 class="subheading">Staff Members</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th></th>
+    </tr>
+    {% for staff in staffers %}
+    <tr>
+        <th>{{staff.first_name}} {{staff.last_name}}</th>
+        <th>{{staff.username}}</th>
+        <th><a href="revokestaff/{{staff.username}}"><i class="fa-solid fa-xmark" style="color:red"></i></a></th>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}
