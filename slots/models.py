@@ -1,4 +1,3 @@
-from pickle import TRUE
 from django.db import models
 from courts.models import Courts
 

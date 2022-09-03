@@ -1,4 +1,3 @@
-from tkinter.tix import Balloon
 from django.db import models
 from sports.models import Sports
 from courts.models import Courts

@@ -1,4 +1,3 @@
-from argparse import ONE_OR_MORE
 from django.db import models
 from slots.models import Slots
 from Users.models import CustomUser

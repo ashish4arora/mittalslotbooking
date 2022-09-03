@@ -1,4 +1,3 @@
-from urllib.response import addclosehook
 from django.shortcuts import render, redirect
 
 from courts.models import Courts

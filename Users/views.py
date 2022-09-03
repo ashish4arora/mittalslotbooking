@@ -1,4 +1,3 @@
-from mimetypes import common_types
 from django.shortcuts import render, redirect
 from . import forms
 from .models import CustomUser
