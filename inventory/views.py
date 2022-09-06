@@ -6,7 +6,7 @@ from sports.models import Sports
 from . import forms
 
 def updateInventory(request):
-    if request.user.isAdmin == False:
+    if request.user.isAdmin == False and request.user.status != "staff":
         return redirect('accessdenied')
     additemform = forms.addItem()
     addinventoryform = forms.addInventory()

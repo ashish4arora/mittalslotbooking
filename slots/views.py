@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import Calendar, Days, Slots
 
 def updateSlots(request):
-    if request.user.isAdmin == False:
+    if request.user.isAdmin == False and request.user.status != "staff":
         return redirect('accessdenied')
     addslotform = forms.addSlot()
     makeCalendarform = forms.makeCalendar()
